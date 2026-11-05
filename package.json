@@ -1,0 +1,26 @@
+{
+  "name": "placementpal",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client",
+    "start": "npm start -w server",
+    "seed": "npm run seed -w server",
+    "test": "npm test -w server",
+    "test:unit": "node --test server/tests/eligibility.test.js server/tests/validation.test.js server/tests/http.test.js",
+    "test:integration": "node --test --test-concurrency=1 server/tests/api.test.js",
+    "format": "prettier --write client/src server docs README.md"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "prettier": "^3.6.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
